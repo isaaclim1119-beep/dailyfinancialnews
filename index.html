@@ -21,637 +21,225 @@
       --positive: #2a6b3c;
       --negative: #b53020;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--paper); color: var(--ink); font-family: 'Lora', Georgia, serif; min-height: 100vh; overflow-x: hidden; }
 
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: 'Lora', Georgia, serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ── MASTHEAD ── */
-    .masthead {
-      background: var(--ink);
-      color: var(--paper);
-      text-align: center;
-      padding: 2.5rem 1.5rem 1.5rem;
-      border-bottom: 3px solid var(--gold);
-      position: relative;
-    }
-
-    .masthead-dateline {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.18em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 0.9rem;
-    }
-
-    .masthead h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 6vw, 5.5rem);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      color: var(--paper);
-    }
-
-    .masthead-sub {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.22em;
-      color: #a09880;
-      margin-top: 0.6rem;
-      text-transform: uppercase;
-    }
-
-    .masthead-flags {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 1.2rem;
-      padding-top: 1rem;
-      border-top: 1px solid #2e2c27;
-    }
-
-    .flag-pill {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      padding: 0.3rem 0.8rem;
-      border: 1px solid;
-      border-radius: 2px;
-      text-transform: uppercase;
-    }
+    .masthead { background: var(--ink); color: var(--paper); text-align: center; padding: 2.5rem 1.5rem 1.5rem; border-bottom: 3px solid var(--gold); }
+    .masthead-dateline { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.9rem; }
+    .masthead h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 900; letter-spacing: -0.02em; line-height: 1; }
+    .masthead-sub { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.22em; color: #a09880; margin-top: 0.6rem; text-transform: uppercase; }
+    .masthead-flags { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid #2e2c27; flex-wrap: wrap; }
+    .flag-pill { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; padding: 0.3rem 0.8rem; border: 1px solid; border-radius: 2px; text-transform: uppercase; }
     .flag-pill.my { color: var(--my-color); border-color: var(--my-color); }
     .flag-pill.hk { color: #c44f74; border-color: #8b1f3f; }
     .flag-pill.us { color: #6080c8; border-color: var(--us-color); }
 
-    /* ── TICKER ── */
-    .ticker-bar {
-      background: var(--ink);
-      border-bottom: 1px solid #2e2c27;
-      padding: 0.45rem 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
+    /* TradingView ticker */
+    .tv-ticker-wrap { background: var(--ink); border-bottom: 1px solid #2e2c27; min-height: 46px; }
 
-    .ticker-inner {
-      display: inline-flex;
-      gap: 2.5rem;
-      animation: ticker 40s linear infinite;
-    }
-
-    .ticker-item {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-      color: #a09880;
-    }
-
-    .ticker-item .name { color: var(--gold); margin-right: 0.4rem; }
-    .ticker-item .up { color: #5cb87a; }
-    .ticker-item .down { color: #e07070; }
-
-    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-    /* ── NAV ── */
-    nav {
-      background: var(--paper2);
-      border-bottom: 2px solid var(--ink);
-      display: flex;
-      align-items: center;
-      padding: 0 1.5rem;
-      gap: 0;
-      overflow-x: auto;
-    }
-
-    .nav-tab {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.9rem 1.2rem;
-      cursor: pointer;
-      border-bottom: 3px solid transparent;
-      color: var(--muted);
-      transition: all 0.15s;
-      white-space: nowrap;
-      background: none;
-      border-top: none;
-      border-left: none;
-      border-right: none;
-    }
-
+    nav { background: var(--paper2); border-bottom: 2px solid var(--ink); display: flex; align-items: center; padding: 0 1.5rem; gap: 0; overflow-x: auto; position: sticky; top: 0; z-index: 50; }
+    .nav-tab { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.9rem 1.2rem; cursor: pointer; border-bottom: 3px solid transparent; color: var(--muted); transition: all 0.15s; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; }
     .nav-tab:hover { color: var(--ink); }
     .nav-tab.active { color: var(--ink); border-bottom-color: var(--ink); font-weight: 500; }
     .nav-tab.my.active { border-bottom-color: var(--my-color); color: var(--my-color); }
     .nav-tab.hk.active { border-bottom-color: var(--hk-color); color: var(--hk-color); }
     .nav-tab.us.active { border-bottom-color: var(--us-color); color: var(--us-color); }
-
     .nav-spacer { flex: 1; }
-
-    .ai-btn {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background: var(--gold);
-      color: var(--ink);
-      border: none;
-      padding: 0.45rem 1rem;
-      border-radius: 2px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: opacity 0.15s;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
+    .ai-btn { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--gold); color: var(--ink); border: none; padding: 0.45rem 1rem; border-radius: 2px; cursor: pointer; font-weight: 500; white-space: nowrap; }
     .ai-btn:hover { opacity: 0.85; }
-    .ai-btn svg { width: 12px; height: 12px; }
 
-    /* ── LAYOUT ── */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
 
-    .section-label {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border-top: 1px solid var(--rule);
-      padding-top: 0.6rem;
-      margin-bottom: 1.5rem;
-    }
+    .section-header { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--rule); padding-top: 0.6rem; margin-bottom: 1.5rem; }
+    .section-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .refresh-btn { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); background: none; border: 1px solid var(--rule); padding: 0.25rem 0.6rem; border-radius: 2px; cursor: pointer; }
+    .refresh-btn:hover { color: var(--ink); border-color: var(--ink); }
 
-    /* ── MARKET GRID ── */
-    .market-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1px;
-      background: var(--rule);
-      border: 1px solid var(--rule);
-      margin-bottom: 2.5rem;
-    }
-
-    .market-card {
-      background: var(--paper);
-      padding: 1.5rem;
-    }
-
-    .market-card-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-    }
-
-    .market-region {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
+    .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 2.5rem; }
+    .market-card { background: var(--paper); padding: 1.1rem 1.3rem; }
+    .market-region { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.25rem; }
     .market-region.my { color: var(--my-color); }
     .market-region.hk { color: var(--hk-color); }
     .market-region.us { color: var(--us-color); }
-
-    .market-index {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 1.6rem;
-      font-weight: 500;
-      line-height: 1.1;
-    }
-
-    .market-change {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.72rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 2px;
-    }
+    .market-region.fx { color: var(--muted); }
+    .market-index { font-family: 'IBM Plex Mono', monospace; font-size: 1.35rem; font-weight: 500; line-height: 1.1; }
+    .market-row { display: flex; align-items: center; justify-content: space-between; margin-top: 0.25rem; }
+    .market-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: var(--muted); }
+    .market-change { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; padding: 0.12rem 0.4rem; border-radius: 2px; }
     .market-change.up { background: #e8f5ec; color: var(--positive); }
     .market-change.down { background: #fdecea; color: var(--negative); }
+    .market-change.flat { background: #f0efe8; color: var(--muted); }
+    .market-loading { color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; animation: blink 1.2s ease infinite; }
+    @keyframes blink { 0%,100%{opacity:.3} 50%{opacity:1} }
 
-    .market-label {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-    }
+    .news-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-bottom: 3rem; }
+    @media (max-width: 768px) { .news-grid { grid-template-columns: 1fr; } }
 
-    /* ── NEWS GRID ── */
-    .news-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
+    .source-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; align-items: center; }
+    .source-label-prefix { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--muted); letter-spacing: 0.1em; }
+    .source-chip { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.06em; padding: 0.2rem 0.55rem; border: 1px solid; border-radius: 2px; white-space: nowrap; }
+    .source-chip.live { border-color: var(--positive); color: var(--positive); }
 
-    @media (max-width: 768px) {
-      .news-grid { grid-template-columns: 1fr; }
-    }
-
-    .news-col {}
-
-    /* ── STORY CARD ── */
-    .story-card {
-      border-top: 1px solid var(--rule);
-      padding: 1.2rem 0;
-      cursor: pointer;
-      transition: background 0.1s;
-    }
-
-    .story-card:hover { background: rgba(0,0,0,0.02); }
-
-    .story-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .story-tag {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.15rem 0.5rem;
-      border-radius: 1px;
-    }
+    .story-card { border-top: 1px solid var(--rule); padding: 1.1rem 0; }
+    .story-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.45rem; flex-wrap: wrap; }
+    .story-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.12rem 0.45rem; border-radius: 1px; }
     .tag-my { background: #fdecea; color: var(--my-color); }
     .tag-hk { background: #fce8ef; color: var(--hk-color); }
     .tag-us { background: #e8edf8; color: var(--us-color); }
-    .tag-corp { background: var(--gold-light); color: #7a5c00; }
+    .tag-world { background: var(--gold-light); color: #7a5c00; }
+    .tag-src { background: #e8e6e0; color: var(--muted); }
+    .story-time { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: var(--muted); }
+    .story-headline { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.35rem; }
+    .story-headline a { color: var(--ink); text-decoration: none; }
+    .story-headline a:hover { color: var(--gold); }
+    .story-headline.featured { font-size: 1.55rem; }
+    .story-summary { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+    .story-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 0.5rem; }
+    .story-src-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.56rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+    .read-more { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold-light); }
 
-    .story-time {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--muted);
-    }
+    .skeleton { background: linear-gradient(90deg, var(--paper2) 25%, #ddd8cc 50%, var(--paper2) 75%); background-size: 200% 100%; animation: shimmer 1.6s infinite; border-radius: 2px; }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+    .skel-line { height: 0.85rem; margin-bottom: 0.45rem; }
+    .skel-title { height: 1.3rem; margin-bottom: 0.55rem; width: 88%; }
+    .skel-short { width: 38%; }
 
-    .story-headline {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 0.5rem;
-      color: var(--ink);
-    }
+    .sidebar-card { border: 1px solid var(--rule); padding: 1.1rem; margin-bottom: 1.3rem; background: var(--paper2); }
+    .sidebar-title { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.7rem; }
+    .sidebar-item { display: flex; align-items: flex-start; gap: 0.55rem; padding: 0.55rem 0; border-top: 1px solid var(--rule); }
+    .sidebar-rank { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--rule); min-width: 1rem; }
+    .sidebar-hl { font-size: 0.8rem; line-height: 1.4; }
+    .sidebar-hl a { color: var(--ink); text-decoration: none; }
+    .sidebar-hl a:hover { color: var(--gold); }
 
-    .story-headline.featured {
-      font-size: 1.7rem;
-    }
+    .feed-error { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--muted); padding: 0.8rem 0; border-top: 1px solid var(--rule); }
 
-    .story-summary {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
+    /* TradingView chart section */
+    .chart-section { background: var(--ink); padding: 1.5rem 0 0; }
+    .chart-label { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem 0.8rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
 
-    .story-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 0.7rem;
-    }
-
-    .story-source {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .read-more {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-decoration: none;
-      border-bottom: 1px solid var(--gold-light);
-    }
-
-    /* ── SIDEBAR ── */
-    .sidebar-card {
-      border: 1px solid var(--rule);
-      padding: 1.2rem;
-      margin-bottom: 1.5rem;
-      background: var(--paper2);
-    }
-
-    .sidebar-title {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.8rem;
-    }
-
-    .sidebar-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-      padding: 0.6rem 0;
-      border-top: 1px solid var(--rule);
-      cursor: pointer;
-    }
-
-    .sidebar-rank {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--rule);
-      min-width: 1rem;
-      font-weight: 500;
-    }
-
-    .sidebar-headline {
-      font-size: 0.85rem;
-      line-height: 1.4;
-      color: var(--ink);
-    }
-
-    /* ── CORP SUMMARY PANEL ── */
-    .corp-panel {
-      background: var(--ink);
-      color: var(--paper);
-      padding: 2rem;
-      margin-bottom: 2.5rem;
-      position: relative;
-    }
-
-    .corp-panel-label {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-
-    .corp-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .corp-item {
-      border-left: 2px solid var(--gold);
-      padding-left: 1rem;
-    }
-
-    .corp-company {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-    }
-
-    .corp-ticker {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.62rem;
-      color: #a09880;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.6rem;
-    }
-
-    .corp-summary {
-      font-size: 0.82rem;
-      color: #d4cfbf;
-      line-height: 1.6;
-    }
-
-    /* ── AI DIGEST MODAL ── */
-    .overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(15,14,11,0.75);
-      z-index: 100;
-      align-items: flex-end;
-      justify-content: center;
-    }
+    /* AI Modal */
+    .overlay { display: none; position: fixed; inset: 0; background: rgba(15,14,11,0.78); z-index: 100; align-items: flex-end; justify-content: center; }
     .overlay.open { display: flex; }
-
-    .ai-modal {
-      background: var(--paper);
-      width: 100%;
-      max-width: 680px;
-      max-height: 75vh;
-      border-radius: 6px 6px 0 0;
-      padding: 1.5rem;
-      overflow-y: auto;
-      border-top: 3px solid var(--gold);
-    }
-
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.2rem;
-    }
-
-    .modal-title {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .modal-close {
-      background: none;
-      border: 1px solid var(--rule);
-      width: 28px;
-      height: 28px;
-      border-radius: 2px;
-      cursor: pointer;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 1rem;
-      color: var(--muted);
-    }
-
-    .modal-market-select {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1.2rem;
-      flex-wrap: wrap;
-    }
-
-    .mkt-chip {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.8rem;
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      cursor: pointer;
-      background: none;
-      color: var(--muted);
-      transition: all 0.12s;
-    }
-    .mkt-chip:hover { border-color: var(--ink); color: var(--ink); }
+    .ai-modal { background: var(--paper); width: 100%; max-width: 680px; max-height: 80vh; border-radius: 6px 6px 0 0; padding: 1.5rem; overflow-y: auto; border-top: 3px solid var(--gold); }
+    .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .modal-title { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+    .modal-close { background: none; border: 1px solid var(--rule); width: 28px; height: 28px; border-radius: 2px; cursor: pointer; font-size: 1rem; color: var(--muted); }
+    .modal-chips { display: flex; gap: 0.5rem; margin-bottom: 1.1rem; flex-wrap: wrap; }
+    .mkt-chip { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 0.8rem; border: 1px solid var(--rule); border-radius: 2px; cursor: pointer; background: none; color: var(--muted); }
     .mkt-chip.sel { border-color: var(--gold); color: var(--gold); background: var(--gold-light); }
+    .ai-out { font-size: 0.88rem; line-height: 1.78; color: var(--ink); }
+    .ai-out p { margin-bottom: 0.8rem; }
+    .spinner-row { display: flex; align-items: center; gap: 0.5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--muted); }
+    .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 1.2s ease infinite; }
+    .dot:nth-child(2){animation-delay:.2s} .dot:nth-child(3){animation-delay:.4s}
+    @keyframes pulse{0%,80%,100%{opacity:.2;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
+    .gen-btn { display: block; width: 100%; margin-top: 1rem; background: var(--ink); color: var(--gold); border: none; padding: 0.75rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; }
+    .gen-btn:hover{opacity:.85} .gen-btn:disabled{opacity:.5;cursor:not-allowed}
 
-    .ai-output {
-      font-size: 0.9rem;
-      line-height: 1.75;
-      color: var(--ink);
-    }
-
-    .ai-output p { margin-bottom: 0.8rem; }
-
-    .ai-spinner {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      color: var(--muted);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-    }
-
-    .spinner-dot {
-      width: 6px; height: 6px;
-      background: var(--gold);
-      border-radius: 50%;
-      animation: pulse 1.2s ease-in-out infinite;
-    }
-    .spinner-dot:nth-child(2) { animation-delay: 0.2s; }
-    .spinner-dot:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes pulse { 0%,80%,100% { opacity: 0.2; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1); } }
-
-    .gen-btn {
-      display: block;
-      width: 100%;
-      margin-top: 1rem;
-      background: var(--ink);
-      color: var(--gold);
-      border: none;
-      padding: 0.75rem;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: opacity 0.15s;
-    }
-    .gen-btn:hover { opacity: 0.85; }
-    .gen-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--ink);
-      color: #6b6455;
-      text-align: center;
-      padding: 2rem 1.5rem;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-    }
+    footer { background: var(--ink); color: #6b6455; text-align: center; padding: 2rem 1.5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; }
     footer span { color: var(--gold); }
+    footer a { color: #a09880; text-decoration: none; }
 
-    /* ── VIEW PANELS ── */
     .view-panel { display: none; }
     .view-panel.active { display: block; }
-
-    /* ── EDIT CONTROLS (for adding news manually) ── */
-    .add-story-bar {
-      background: var(--gold-light);
-      border: 1px dashed var(--gold);
-      padding: 1rem 1.5rem;
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .add-story-bar p {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: #7a5c00;
-      flex: 1;
-    }
-
-    .add-story-bar a {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: #7a5c00;
-      text-decoration: underline;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
 
 <!-- MASTHEAD -->
 <div class="masthead">
-  <div class="masthead-dateline" id="dateline">Loading date…</div>
+  <div class="masthead-dateline" id="dateline">Loading…</div>
   <h1>The Brief</h1>
   <div class="masthead-sub">Daily Corporate &amp; Market Digest</div>
   <div class="masthead-flags">
-    <span class="flag-pill my">🇲🇾 Bursa</span>
-    <span class="flag-pill hk">🇭🇰 HSI</span>
-    <span class="flag-pill us">🇺🇸 NYSE · NASDAQ</span>
+    <span class="flag-pill my">🇲🇾 Malaysia · Bursa</span>
+    <span class="flag-pill hk">🇭🇰 Hong Kong · HSI</span>
+    <span class="flag-pill us">🇺🇸 United States · NYSE · NASDAQ</span>
   </div>
 </div>
 
-<!-- TICKER -->
-<div class="ticker-bar">
-  <div class="ticker-inner" id="ticker"></div>
+<!-- TRADINGVIEW LIVE TICKER TAPE -->
+<div class="tv-ticker-wrap">
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+      "symbols": [
+        {"proName":"BURSA:KLCI","title":"KLCI"},
+        {"proName":"HKEX:HSI","title":"Hang Seng"},
+        {"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},
+        {"proName":"NASDAQ:QQQ","title":"NASDAQ"},
+        {"proName":"FOREXCOM:USDMYR","title":"USD/MYR"},
+        {"proName":"FOREXCOM:USDHKD","title":"USD/HKD"},
+        {"proName":"TVC:GOLD","title":"Gold"},
+        {"proName":"TVC:USOIL","title":"Crude Oil"},
+        {"proName":"NASDAQ:AAPL","title":"AAPL"},
+        {"proName":"NASDAQ:NVDA","title":"NVDA"},
+        {"proName":"HKEX:9988","title":"Alibaba"},
+        {"proName":"BURSA:MAYBANK","title":"Maybank"},
+        {"proName":"BURSA:TENAGA","title":"TNB"},
+        {"proName":"HKEX:700","title":"Tencent"}
+      ],
+      "showSymbolLogo": false,
+      "isTransparent": true,
+      "displayMode": "compact",
+      "colorTheme": "dark",
+      "locale": "en"
+    }
+    </script>
+  </div>
 </div>
 
 <!-- NAV -->
 <nav>
   <button class="nav-tab active" data-view="all">All Markets</button>
-  <button class="nav-tab my" data-view="my">Malaysia</button>
-  <button class="nav-tab hk" data-view="hk">Hong Kong</button>
-  <button class="nav-tab us" data-view="us">United States</button>
+  <button class="nav-tab my" data-view="my">🇲🇾 Malaysia</button>
+  <button class="nav-tab hk" data-view="hk">🇭🇰 Hong Kong</button>
+  <button class="nav-tab us" data-view="us">🇺🇸 United States</button>
   <div class="nav-spacer"></div>
-  <button class="ai-btn" id="openAI">
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M5 8h6M8 5v6"/></svg>
-    AI Digest
-  </button>
+  <button class="ai-btn" id="openAI">✦ AI Digest</button>
 </nav>
 
-<!-- MAIN CONTENT -->
 <div class="container">
 
-  <!-- MARKET OVERVIEW -->
-  <div class="section-label">Market Snapshot — <span id="snap-time"></span></div>
-  <div class="market-grid" id="market-grid"></div>
-
-  <!-- CORPORATE SUMMARY STRIP -->
-  <div class="corp-panel">
-    <div class="corp-panel-label">▪ Corporate Highlights</div>
-    <div class="corp-grid" id="corp-grid"></div>
+  <!-- MARKET SNAPSHOT -->
+  <div class="section-header">
+    <div class="section-label">Market Snapshot — <span id="snap-time" style="color:var(--muted)">Loading…</span></div>
+    <button class="refresh-btn" id="refresh-mkt">↻ Refresh</button>
+  </div>
+  <div class="market-grid" id="market-grid">
+    <div class="market-card"><div class="market-loading">Fetching live prices…</div></div>
   </div>
 
-  <!-- ALL MARKETS VIEW -->
+  <!-- ALL VIEW -->
   <div class="view-panel active" id="view-all">
     <div class="news-grid">
-      <div class="news-col" id="main-stories"></div>
+      <div>
+        <div class="source-bar">
+          <span class="source-label-prefix">Live RSS:</span>
+          <span class="source-chip live">CNBC Markets</span>
+          <span class="source-chip live">MarketWatch</span>
+          <span class="source-chip live">Reuters Business</span>
+          <span class="source-chip live">Investing.com</span>
+          <span class="source-chip live">Yahoo Finance</span>
+        </div>
+        <div id="feed-all">
+          <div id="skel-all">
+            <div class="story-card"><div class="skeleton skel-short skel-line"></div><div class="skeleton skel-title"></div><div class="skeleton skel-line"></div><div class="skeleton skel-line" style="width:68%"></div></div>
+            <div class="story-card"><div class="skeleton skel-short skel-line"></div><div class="skeleton skel-title"></div><div class="skeleton skel-line"></div><div class="skeleton skel-line" style="width:75%"></div></div>
+            <div class="story-card"><div class="skeleton skel-short skel-line"></div><div class="skeleton skel-title"></div><div class="skeleton skel-line"></div></div>
+          </div>
+        </div>
+      </div>
       <div>
         <div class="sidebar-card">
-          <div class="sidebar-title">Most Read</div>
-          <div id="sidebar-mostread"></div>
+          <div class="sidebar-title">Yahoo Finance — Latest</div>
+          <div id="sb-yahoo"><div class="skeleton skel-line" style="margin:.5rem 0"></div><div class="skeleton skel-line" style="width:80%;margin:.5rem 0"></div><div class="skeleton skel-line" style="width:70%;margin:.5rem 0"></div></div>
         </div>
         <div class="sidebar-card">
-          <div class="sidebar-title">Sector Watch</div>
-          <div id="sidebar-sector"></div>
+          <div class="sidebar-title">Reuters — Business</div>
+          <div id="sb-reuters"><div class="skeleton skel-line" style="margin:.5rem 0"></div><div class="skeleton skel-line" style="width:80%;margin:.5rem 0"></div><div class="skeleton skel-line" style="width:70%;margin:.5rem 0"></div></div>
         </div>
       </div>
     </div>
@@ -659,299 +247,370 @@
 
   <!-- MY VIEW -->
   <div class="view-panel" id="view-my">
-    <div class="section-label">Malaysia Market Stories</div>
-    <div id="stories-my"></div>
+    <div class="source-bar">
+      <span class="source-label-prefix">Malaysia feeds:</span>
+      <span class="source-chip live">CNBC Asia</span>
+      <span class="source-chip live">Reuters Asia Markets</span>
+      <span class="source-chip live">Investing.com</span>
+    </div>
+    <div id="feed-my"><div class="story-card"><div class="skeleton skel-short skel-line"></div><div class="skeleton skel-title"></div><div class="skeleton skel-line"></div></div></div>
   </div>
 
   <!-- HK VIEW -->
   <div class="view-panel" id="view-hk">
-    <div class="section-label">Hong Kong Market Stories</div>
-    <div id="stories-hk"></div>
+    <div class="source-bar">
+      <span class="source-label-prefix">Hong Kong feeds:</span>
+      <span class="source-chip live">CNBC Asia</span>
+      <span class="source-chip live">Reuters Asia Markets</span>
+      <span class="source-chip live">Investing.com</span>
+    </div>
+    <div id="feed-hk"><div class="story-card"><div class="skeleton skel-short skel-line"></div><div class="skeleton skel-title"></div><div class="skeleton skel-line"></div></div></div>
   </div>
 
   <!-- US VIEW -->
   <div class="view-panel" id="view-us">
-    <div class="section-label">United States Market Stories</div>
-    <div id="stories-us"></div>
+    <div class="source-bar">
+      <span class="source-label-prefix">US feeds:</span>
+      <span class="source-chip live">CNBC Investing</span>
+      <span class="source-chip live">CNBC Economy</span>
+      <span class="source-chip live">MarketWatch</span>
+    </div>
+    <div id="feed-us"><div class="story-card"><div class="skeleton skel-short skel-line"></div><div class="skeleton skel-title"></div><div class="skeleton skel-line"></div></div></div>
   </div>
 
 </div>
 
-<!-- FOOTER -->
+<!-- TRADINGVIEW CHART -->
+<div class="chart-section">
+  <div class="chart-label">▪ Live Chart — powered by TradingView (click symbols in watchlist to switch)</div>
+  <div class="tradingview-widget-container" style="height:400px;">
+    <div id="tv_chart_container"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+    new TradingView.widget({
+      "autosize": true,
+      "symbol": "FOREXCOM:SPXUSD",
+      "interval": "D",
+      "timezone": "Asia/Kuala_Lumpur",
+      "theme": "dark",
+      "style": "1",
+      "locale": "en",
+      "enable_publishing": false,
+      "hide_legend": false,
+      "save_image": false,
+      "container_id": "tv_chart_container",
+      "watchlist": ["BURSA:KLCI","HKEX:HSI","FOREXCOM:SPXUSD","NASDAQ:QQQ","FOREXCOM:USDMYR","TVC:GOLD","TVC:USOIL","BURSA:MAYBANK","HKEX:9988","NASDAQ:NVDA"],
+      "height": 400,
+      "backgroundColor": "#0f0e0b"
+    });
+    </script>
+  </div>
+</div>
+
 <footer>
-  <p><span>The Brief</span> · Personal Market Digest · Powered by Claude AI</p>
-  <p style="margin-top:0.4rem;">Data for illustrative purposes. Always verify with official sources.</p>
+  <p><span>The Brief</span> · Personal Market Digest · Kuala Lumpur, Malaysia</p>
+  <p style="margin-top:.5rem;">Live news: <a href="https://www.cnbc.com" target="_blank">CNBC</a> · <a href="https://www.reuters.com" target="_blank">Reuters</a> · <a href="https://www.marketwatch.com" target="_blank">MarketWatch</a> · <a href="https://finance.yahoo.com" target="_blank">Yahoo Finance</a> · Charts: <a href="https://www.tradingview.com" target="_blank">TradingView</a> · AI: <span>Claude</span></p>
+  <p style="margin-top:.5rem;">For informational purposes only — not financial advice.</p>
 </footer>
 
 <!-- AI DIGEST MODAL -->
 <div class="overlay" id="overlay">
   <div class="ai-modal">
     <div class="modal-header">
-      <div class="modal-title">⚡ AI Market Digest</div>
+      <div class="modal-title">✦ AI Market Digest</div>
       <button class="modal-close" id="closeModal">✕</button>
     </div>
-    <div class="modal-market-select">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:0.66rem;color:var(--muted);margin-bottom:1rem;">Claude summarises today's live RSS headlines into a concise briefing for you.</p>
+    <div class="modal-chips">
       <button class="mkt-chip sel" data-mkt="MY">🇲🇾 Malaysia</button>
       <button class="mkt-chip sel" data-mkt="HK">🇭🇰 Hong Kong</button>
       <button class="mkt-chip sel" data-mkt="US">🇺🇸 United States</button>
     </div>
-    <div class="ai-output" id="ai-output">
-      <p style="color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem;">Select markets above and generate your AI-powered briefing.</p>
+    <div class="ai-out" id="ai-out">
+      <p style="color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:0.7rem;">Select markets and click Generate. Claude will write a briefing from today's live headlines.</p>
     </div>
     <button class="gen-btn" id="gen-btn">Generate Today's Briefing</button>
   </div>
 </div>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────────────────
-const MARKETS = [
-  { id: 'my', name: 'KLCI', region: 'Malaysia', cls: 'my', value: '1,584.22', change: '+0.41%', raw: 1584.22, dir: 'up' },
-  { id: 'hk', name: 'Hang Seng', region: 'Hong Kong', cls: 'hk', value: '18,643.10', change: '-0.87%', raw: 18643, dir: 'down' },
-  { id: 'us', name: 'S&P 500', region: 'United States', cls: 'us', value: '5,308.15', change: '+0.62%', raw: 5308, dir: 'up' },
+// ─── RSS FEED CONFIG ─────────────────────────────────────────────────────────
+const FEED_CONFIG = {
+  all: [
+    { url: 'https://www.cnbc.com/id/10000664/device/rss/rss.html', label: 'CNBC Investing', tag: 'US', cls: 'tag-us' },
+    { url: 'https://www.cnbc.com/id/20409666/device/rss/rss.html', label: 'CNBC Markets', tag: 'US', cls: 'tag-us' },
+    { url: 'https://feeds.content.dowjones.io/public/rss/mw_realtimeheadlines', label: 'MarketWatch', tag: 'US', cls: 'tag-us' },
+    { url: 'https://feeds.reuters.com/reuters/businessNews', label: 'Reuters Business', tag: 'World', cls: 'tag-world' },
+    { url: 'https://www.investing.com/rss/news_301.rss', label: 'Investing.com', tag: 'World', cls: 'tag-world' },
+  ],
+  my: [
+    { url: 'https://www.cnbc.com/id/15839069/device/rss/rss.html', label: 'CNBC Asia Finance', tag: 'Asia/MY', cls: 'tag-my' },
+    { url: 'https://feeds.reuters.com/reuters/AsianMarkets', label: 'Reuters Asia Markets', tag: 'Asia/MY', cls: 'tag-my' },
+    { url: 'https://www.investing.com/rss/news_301.rss', label: 'Investing.com', tag: 'Markets', cls: 'tag-my' },
+  ],
+  hk: [
+    { url: 'https://www.cnbc.com/id/15839069/device/rss/rss.html', label: 'CNBC Asia', tag: 'Asia/HK', cls: 'tag-hk' },
+    { url: 'https://feeds.reuters.com/reuters/AsianMarkets', label: 'Reuters Asia', tag: 'Asia/HK', cls: 'tag-hk' },
+  ],
+  us: [
+    { url: 'https://www.cnbc.com/id/10000664/device/rss/rss.html', label: 'CNBC Investing', tag: 'US', cls: 'tag-us' },
+    { url: 'https://www.cnbc.com/id/10001014/device/rss/rss.html', label: 'CNBC Economy', tag: 'US', cls: 'tag-us' },
+    { url: 'https://feeds.content.dowjones.io/public/rss/mw_realtimeheadlines', label: 'MarketWatch', tag: 'US', cls: 'tag-us' },
+  ],
+  yahoo: 'https://finance.yahoo.com/news/rssindex',
+  reuters: 'https://feeds.reuters.com/reuters/businessNews',
+};
+
+const QUOTES = [
+  { sym: '^KLSE', name: 'KLCI', region: 'Malaysia', cls: 'my' },
+  { sym: '^HSI', name: 'Hang Seng', region: 'Hong Kong', cls: 'hk' },
+  { sym: '^GSPC', name: 'S&P 500', region: 'United States', cls: 'us' },
+  { sym: '^IXIC', name: 'NASDAQ', region: 'US Tech', cls: 'us' },
+  { sym: 'USDMYR=X', name: 'USD/MYR', region: 'Forex', cls: 'fx' },
+  { sym: 'GC=F', name: 'Gold', region: 'Commodities', cls: 'fx' },
 ];
 
-const TICKER_DATA = [
-  { name: 'KLCI', val: '1,584', chg: '+0.41%', dir: 'up' },
-  { name: 'HSI', val: '18,643', chg: '-0.87%', dir: 'down' },
-  { name: 'S&P 500', val: '5,308', chg: '+0.62%', dir: 'up' },
-  { name: 'NASDAQ', val: '16,742', chg: '+0.89%', dir: 'up' },
-  { name: 'USD/MYR', val: '4.72', chg: '+0.12%', dir: 'up' },
-  { name: 'HKD/USD', val: '0.128', chg: '0.00%', dir: 'up' },
-  { name: 'BRENT', val: '$82.14', chg: '-1.2%', dir: 'down' },
-  { name: 'GOLD', val: '$2,341', chg: '+0.3%', dir: 'up' },
+// ─── CORS PROXIES (round-robin) ───────────────────────────────────────────────
+const PROXIES = [
+  u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+  u => `https://corsproxy.io/?url=${encodeURIComponent(u)}`,
 ];
 
-const CORP_DATA = [
-  { company: 'Maybank', ticker: 'MAY:MK', region: 'MY', summary: 'Q1 net profit rose 8.3% YoY to RM2.51B, driven by higher net interest income and lower provision charges.' },
-  { company: 'Alibaba', ticker: '9988:HK', region: 'HK', summary: 'Cloud division grew 3% QoQ amid restructuring. Management hints at renewed IPO plans for logistics arm Cainiao.' },
-  { company: 'NVIDIA', ticker: 'NVDA:US', region: 'US', summary: 'Forward guidance raised to $28B for next quarter. Data centre demand continues to outpace supply despite geopolitical headwinds.' },
-  { company: 'IHH Healthcare', ticker: 'IHH:MK', region: 'MY', summary: 'Expanding into Vietnam with a RM600M greenfield hospital in HCMC, targeting Southeast Asian medical tourism.' },
-  { company: 'Tencent', ticker: '700:HK', region: 'HK', summary: 'WeChat Pay cross-border transactions up 34% ahead of Golden Week. Gaming revenue returns to growth after regulatory freeze.' },
-  { company: 'Apple', ticker: 'AAPL:US', region: 'US', summary: 'Services segment hit $24.2B, a new record. India manufacturing push could offset tariff risks from China exposure.' },
-];
-
-const STORIES = [
-  {
-    id: 1, market: 'my', featured: true,
-    headline: 'Bank Negara holds OPR at 3.00% as inflation eases to 1.8%',
-    summary: 'Malaysia\'s central bank maintained its benchmark overnight policy rate at 3.00% during its May monetary policy meeting, citing stable growth and moderated inflationary pressures. Economists expect rates to remain unchanged through year-end.',
-    source: 'The Star / Bloomberg', time: '9:30 AM', tag: 'MY', tagCls: 'tag-my',
-  },
-  {
-    id: 2, market: 'hk',
-    headline: 'Hang Seng slips as property developers weigh on sentiment ahead of PBOC decision',
-    summary: 'Hong Kong\'s benchmark index fell 0.87% as Country Garden and Evergrande-linked creditors resumed legal proceedings. Markets await People\'s Bank of China loan prime rate guidance due Thursday.',
-    source: 'SCMP / Reuters', time: '10:15 AM', tag: 'HK', tagCls: 'tag-hk',
-  },
-  {
-    id: 3, market: 'us',
-    headline: 'Fed minutes signal two cuts possible in H2 2025 as labour market softens',
-    summary: 'Minutes from the May FOMC meeting revealed a growing consensus toward easing, contingent on sustained disinflation. Core PCE at 2.6% remains above the 2% target but the trend is encouraging enough for policymakers.',
-    source: 'WSJ / Fed Reserve', time: '11:00 AM', tag: 'US', tagCls: 'tag-us',
-  },
-  {
-    id: 4, market: 'my',
-    headline: 'Tenaga Nasional secures RM4.2B green bond for renewable energy pipeline',
-    summary: 'TNB successfully priced its inaugural sustainability-linked bond, oversubscribed by 3.8x. Proceeds will fund 1.2GW of solar projects under the National Energy Transition Roadmap.',
-    source: 'Edge Markets', time: '8:45 AM', tag: 'MY', tagCls: 'tag-my',
-  },
-  {
-    id: 5, market: 'us',
-    headline: 'Nvidia surpasses $3 trillion market cap for second consecutive quarter',
-    summary: 'Fuelled by insatiable AI infrastructure demand, Nvidia\'s stock gained 4.2% on Wednesday following an analyst day that revised Blackwell shipment estimates higher. Jensen Huang projected total AI capex could reach $1 trillion annually by 2027.',
-    source: 'CNBC / Bloomberg', time: '7:00 AM', tag: 'US', tagCls: 'tag-us',
-  },
-  {
-    id: 6, market: 'hk',
-    headline: 'Hong Kong IPO pipeline revives: six listings expected before summer recess',
-    summary: 'The HKEX confirmed six prospective IPOs in the pipeline, including two EV-adjacent manufacturers and a fintech firm. Total expected fundraising is estimated at HK$18B, the strongest quarter since 2021.',
-    source: 'HKEJ / Bloomberg', time: '9:00 AM', tag: 'HK', tagCls: 'tag-hk',
-  },
-];
-
-const MOST_READ = [
-  'Malaysia eyes MSCI EM upgrade as FDI commitments hit record RM92B',
-  'Alibaba's cloud spin-off shelved amid regulatory uncertainty',
-  'Apple's $110B buyback largest in corporate history',
-  'Ringgit strengthens to 4-month high against USD',
-  'CIMB to acquire 20% stake in regional fintech Tonik',
-];
-
-const SECTORS = [
-  { label: 'MY Financials', dir: 'up', chg: '+1.2%' },
-  { label: 'HK Property', dir: 'down', chg: '-2.1%' },
-  { label: 'US Tech', dir: 'up', chg: '+1.8%' },
-  { label: 'MY Utilities', dir: 'up', chg: '+0.6%' },
-  { label: 'HK Retail', dir: 'down', chg: '-0.4%' },
-];
-
-// ── RENDER DATE ──────────────────────────────────────────────────────────
-function renderDate() {
-  const now = new Date();
-  const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  document.getElementById('dateline').textContent = now.toLocaleDateString('en-MY', opts).toUpperCase();
-  document.getElementById('snap-time').textContent = 'As of ' + now.toLocaleTimeString('en-MY', { hour: '2-digit', minute: '2-digit' });
+async function proxyFetch(url, attempt = 0) {
+  if (attempt >= PROXIES.length) throw new Error('Proxies exhausted');
+  try {
+    const r = await fetch(PROXIES[attempt](url), { signal: AbortSignal.timeout(9000) });
+    if (!r.ok) throw new Error(r.status);
+    return await r.text();
+  } catch { return proxyFetch(url, attempt + 1); }
 }
 
-// ── TICKER ───────────────────────────────────────────────────────────────
-function renderTicker() {
-  const items = [...TICKER_DATA, ...TICKER_DATA];
-  document.getElementById('ticker').innerHTML = items.map(t =>
-    `<span class="ticker-item"><span class="name">${t.name}</span><span>${t.val}</span> <span class="${t.dir === 'up' ? 'up' : 'down'}">${t.chg}</span></span>`
-  ).join('');
+// ─── RSS PARSER ───────────────────────────────────────────────────────────────
+function parseRSS(xml) {
+  const doc = new DOMParser().parseFromString(xml, 'text/xml');
+  return [...doc.querySelectorAll('item')].map(el => {
+    const title = el.querySelector('title')?.textContent?.trim() || '';
+    const link = el.querySelector('link')?.textContent?.trim() || '#';
+    const rawDesc = el.querySelector('description')?.textContent?.trim() || '';
+    const desc = rawDesc.replace(/<[^>]+>/g, '').replace(/&\w+;/g, ' ').trim().slice(0, 220);
+    const dateStr = el.querySelector('pubDate')?.textContent?.trim() || '';
+    const date = dateStr ? new Date(dateStr) : new Date(0);
+    const timeAgo = timeAgoStr(date);
+    return { title, link, desc, date, timeAgo };
+  }).filter(i => i.title && i.link !== '#');
 }
 
-// ── MARKETS ──────────────────────────────────────────────────────────────
-function renderMarkets() {
-  document.getElementById('market-grid').innerHTML = MARKETS.map(m => `
-    <div class="market-card">
-      <div class="market-card-header">
-        <div>
-          <div class="market-region ${m.cls}">${m.region}</div>
-          <div class="market-index">${m.value}</div>
-          <div class="market-label">${m.name}</div>
-        </div>
-        <span class="market-change ${m.dir}">${m.change}</span>
-      </div>
+function timeAgoStr(d) {
+  const m = (Date.now() - d.getTime()) / 60000;
+  if (isNaN(m) || m < 0) return '';
+  if (m < 1) return 'Just now';
+  if (m < 60) return `${Math.round(m)}m ago`;
+  if (m < 1440) return `${Math.round(m / 60)}h ago`;
+  return d.toLocaleDateString('en-MY', { month: 'short', day: 'numeric' });
+}
+
+// ─── RENDER ───────────────────────────────────────────────────────────────────
+function card(item, tag, cls, src, featured) {
+  return `<div class="story-card">
+    <div class="story-meta">
+      <span class="story-tag ${cls}">${tag}</span>
+      <span class="story-tag tag-src">${src}</span>
+      ${item.timeAgo ? `<span class="story-time">${item.timeAgo}</span>` : ''}
     </div>
-  `).join('');
-}
-
-// ── CORP STRIP ───────────────────────────────────────────────────────────
-function renderCorp() {
-  document.getElementById('corp-grid').innerHTML = CORP_DATA.map(c => `
-    <div class="corp-item">
-      <div class="corp-company">${c.company}</div>
-      <div class="corp-ticker">${c.ticker} · ${c.region}</div>
-      <div class="corp-summary">${c.summary}</div>
+    <div class="story-headline${featured ? ' featured' : ''}">
+      <a href="${item.link}" target="_blank" rel="noopener">${item.title}</a>
     </div>
-  `).join('');
-}
-
-// ── STORY CARD ───────────────────────────────────────────────────────────
-function storyCard(s) {
-  return `
-    <div class="story-card">
-      <div class="story-meta">
-        <span class="story-tag ${s.tagCls}">${s.tag}</span>
-        <span class="story-time">${s.time}</span>
-      </div>
-      <div class="story-headline ${s.featured ? 'featured' : ''}">${s.headline}</div>
-      <div class="story-summary">${s.summary}</div>
-      <div class="story-footer">
-        <span class="story-source">${s.source}</span>
-        <a class="read-more" href="#">Read More →</a>
-      </div>
+    ${item.desc ? `<div class="story-summary">${item.desc}…</div>` : ''}
+    <div class="story-footer">
+      <span class="story-src-label">${src}</span>
+      <a class="read-more" href="${item.link}" target="_blank" rel="noopener">Full story →</a>
     </div>
-  `;
+  </div>`;
 }
 
-// ── MAIN STORIES ─────────────────────────────────────────────────────────
-function renderMainStories() {
-  document.getElementById('main-stories').innerHTML =
-    `<div class="section-label">Top Stories</div>` +
-    STORIES.map(storyCard).join('');
+function sbItem(item, i) {
+  return `<div class="sidebar-item">
+    <span class="sidebar-rank">${i+1}</span>
+    <span class="sidebar-hl"><a href="${item.link}" target="_blank" rel="noopener">${item.title}</a></span>
+  </div>`;
 }
 
-// ── SIDEBAR ──────────────────────────────────────────────────────────────
-function renderSidebar() {
-  document.getElementById('sidebar-mostread').innerHTML = MOST_READ.map((h, i) => `
-    <div class="sidebar-item">
-      <span class="sidebar-rank">${i + 1}</span>
-      <span class="sidebar-headline">${h}</span>
-    </div>
-  `).join('');
+// ─── LOAD FEED GROUP ──────────────────────────────────────────────────────────
+const liveHL = { MY: [], HK: [], US: [], snap: '' };
 
-  document.getElementById('sidebar-sector').innerHTML = SECTORS.map(s => `
-    <div class="sidebar-item">
-      <span class="story-tag ${s.dir === 'up' ? 'tag-corp' : 'tag-hk'}" style="font-size:0.55rem;">${s.dir === 'up' ? '▲' : '▼'}</span>
-      <span class="sidebar-headline" style="flex:1;">${s.label}</span>
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:${s.dir === 'up' ? 'var(--positive)' : 'var(--negative)'};">${s.chg}</span>
-    </div>
-  `).join('');
-}
+async function loadGroup(group, containerId, skeletonId, limit = 18) {
+  const feeds = FEED_CONFIG[group];
+  const container = document.getElementById(containerId);
+  const skel = document.getElementById(skeletonId);
 
-// ── MARKET-SPECIFIC VIEWS ─────────────────────────────────────────────────
-function renderMarketViews() {
-  ['my', 'hk', 'us'].forEach(mkt => {
-    document.getElementById('stories-' + mkt).innerHTML =
-      STORIES.filter(s => s.market === mkt).map(storyCard).join('');
+  const settled = await Promise.allSettled(
+    feeds.map(f => proxyFetch(f.url).then(xml => ({ items: parseRSS(xml), f })))
+  );
+
+  const all = [];
+  settled.forEach(r => {
+    if (r.status === 'fulfilled') {
+      r.value.items.forEach(item => all.push({ ...item, feed: r.value.f }));
+    }
   });
+
+  // Dedup + sort by date desc
+  const seen = new Set();
+  const stories = all.filter(i => {
+    const k = i.title.slice(0, 55).toLowerCase();
+    if (seen.has(k)) return false;
+    seen.add(k); return true;
+  }).sort((a, b) => b.date - a.date).slice(0, limit);
+
+  if (skel) skel.remove();
+
+  if (!stories.length) {
+    container.innerHTML = '<div class="feed-error">⚠ Could not load feeds — check connection or try refreshing. Direct links: <a href="https://www.cnbc.com/markets/" target="_blank">CNBC</a> · <a href="https://www.marketwatch.com" target="_blank">MarketWatch</a></div>';
+    return [];
+  }
+
+  container.innerHTML = stories.map((s, i) => card(s, s.feed.tag, s.feed.cls, s.feed.label, i === 0 && group === 'all')).join('');
+  return stories;
 }
 
-// ── TAB NAVIGATION ───────────────────────────────────────────────────────
+async function loadSidebar(url, id, limit = 7) {
+  const el = document.getElementById(id);
+  try {
+    const xml = await proxyFetch(url);
+    const items = parseRSS(xml).slice(0, limit);
+    el.innerHTML = items.map((it, i) => sbItem(it, i)).join('');
+    return items;
+  } catch {
+    el.innerHTML = '<div class="feed-error" style="padding:.4rem 0;font-size:.65rem;">Unable to load.</div>';
+    return [];
+  }
+}
+
+// ─── MARKET DATA (Yahoo Finance v8, free) ─────────────────────────────────────
+async function loadMarkets() {
+  const grid = document.getElementById('market-grid');
+  const syms = QUOTES.map(q => q.sym).join(',');
+  const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${encodeURIComponent(syms)}&fields=regularMarketPrice,regularMarketChangePercent,regularMarketTime`;
+
+  grid.innerHTML = QUOTES.map(q => `<div class="market-card"><div class="market-region ${q.cls}">${q.region}</div><div class="market-loading">Loading…</div><div class="market-label">${q.name}</div></div>`).join('');
+
+  try {
+    const raw = await proxyFetch(url);
+    const data = JSON.parse(raw);
+    const results = data?.quoteResponse?.result || [];
+
+    if (!results.length) throw new Error('No data');
+
+    grid.innerHTML = results.map(r => {
+      const q = QUOTES.find(q => q.sym === r.symbol) || {};
+      const price = r.regularMarketPrice ?? null;
+      const pct = r.regularMarketChangePercent ?? null;
+      const fmt = price != null ? price.toLocaleString('en-US', { maximumFractionDigits: price < 100 ? 4 : 2 }) : '—';
+      const dir = pct > 0 ? 'up' : pct < 0 ? 'down' : 'flat';
+      const chgStr = pct != null ? `${pct > 0 ? '+' : ''}${pct.toFixed(2)}%` : '—';
+      return `<div class="market-card">
+        <div class="market-region ${q.cls}">${q.region}</div>
+        <div class="market-index">${fmt}</div>
+        <div class="market-row">
+          <div class="market-label">${q.name}</div>
+          <span class="market-change ${dir}">${chgStr}</span>
+        </div>
+      </div>`;
+    }).join('');
+
+    document.getElementById('snap-time').textContent = 'As of ' + new Date().toLocaleTimeString('en-MY', { hour: '2-digit', minute: '2-digit' }) + ' MYT';
+    liveHL.snap = results.map(r => {
+      const q = QUOTES.find(q => q.sym === r.symbol);
+      return `${q?.name} ${r.regularMarketPrice?.toFixed(2)} (${r.regularMarketChangePercent?.toFixed(2)}%)`;
+    }).join(' | ');
+
+  } catch {
+    grid.innerHTML = `<div class="market-card" style="grid-column:1/-1;"><div class="market-loading">Market data unavailable — live prices are in the TradingView ticker above.</div></div>`;
+    document.getElementById('snap-time').textContent = 'See TradingView ticker';
+  }
+}
+
+// ─── DATE ─────────────────────────────────────────────────────────────────────
+document.getElementById('dateline').textContent =
+  new Date().toLocaleDateString('en-MY', { weekday:'long', year:'numeric', month:'long', day:'numeric' }).toUpperCase();
+
+// ─── TABS (lazy-load) ─────────────────────────────────────────────────────────
+const tabLoaded = { my: false, hk: false, us: false };
 document.querySelectorAll('.nav-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
     tab.classList.add('active');
-    document.getElementById('view-' + tab.dataset.view).classList.add('active');
+    const v = tab.dataset.view;
+    document.getElementById('view-' + v).classList.add('active');
+    if (v !== 'all' && !tabLoaded[v]) {
+      tabLoaded[v] = true;
+      loadGroup(v, 'feed-' + v, null, 15).then(items => {
+        liveHL[v.toUpperCase()] = items.slice(0, 6).map(i => i.title);
+      });
+    }
   });
 });
 
-// ── AI MODAL ─────────────────────────────────────────────────────────────
+document.getElementById('refresh-mkt').addEventListener('click', loadMarkets);
+
+// ─── AI MODAL ─────────────────────────────────────────────────────────────────
 const overlay = document.getElementById('overlay');
 document.getElementById('openAI').addEventListener('click', () => overlay.classList.add('open'));
 document.getElementById('closeModal').addEventListener('click', () => overlay.classList.remove('open'));
 overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('open'); });
+document.querySelectorAll('.mkt-chip').forEach(c => c.addEventListener('click', () => c.classList.toggle('sel')));
 
-document.querySelectorAll('.mkt-chip').forEach(chip => {
-  chip.addEventListener('click', () => chip.classList.toggle('sel'));
-});
-
-document.getElementById('gen-btn').addEventListener('click', generateDigest);
-
-async function generateDigest() {
-  const selected = [...document.querySelectorAll('.mkt-chip.sel')].map(c => c.dataset.mkt);
-  if (!selected.length) { alert('Select at least one market.'); return; }
-
+document.getElementById('gen-btn').addEventListener('click', async () => {
+  const sel = [...document.querySelectorAll('.mkt-chip.sel')].map(c => c.dataset.mkt);
+  if (!sel.length) { alert('Select at least one market.'); return; }
   const btn = document.getElementById('gen-btn');
-  const out = document.getElementById('ai-output');
-  btn.disabled = true;
-  btn.textContent = 'Generating…';
-  out.innerHTML = `<div class="ai-spinner"><div class="spinner-dot"></div><div class="spinner-dot"></div><div class="spinner-dot"></div><span>Composing briefing…</span></div>`;
+  const out = document.getElementById('ai-out');
+  btn.disabled = true; btn.textContent = 'Generating…';
+  out.innerHTML = `<div class="spinner-row"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span>Composing from live headlines…</span></div>`;
 
-  const mktContext = selected.map(m => {
-    const stories = STORIES.filter(s => s.market === m.toLowerCase());
-    return `**${m}**: ${stories.map(s => s.headline).join('; ')}`;
+  const ctx = sel.map(m => {
+    const hl = liveHL[m];
+    return `**${m} headlines**: ${hl?.length ? hl.join(' | ') : 'See live feeds on page.'}`;
   }).join('\n');
 
-  const prompt = `You are a sharp financial journalist writing a concise daily market briefing.
-  
-Today's market headlines:\n${mktContext}
+  const prompt = `You are a senior financial journalist writing a concise daily briefing for a Malaysian investor tracking MY, HK, and US markets.
 
-Write a crisp, professional 3-4 paragraph briefing covering the selected markets (${selected.join(', ')}). 
-Use a Bloomberg/FT editorial tone. Highlight key themes, risks, and opportunities. Keep it under 250 words.`;
+Live market prices today: ${liveHL.snap || 'See TradingView on page.'}
+
+Today's live RSS headlines:
+${ctx}
+
+Write a crisp, professional 3-4 paragraph briefing for: ${sel.join(', ')}.
+- Lead with the most significant macro theme
+- Reference index levels or moves where data is available
+- Highlight cross-market linkages (e.g. Fed policy → ringgit, US tech sentiment → HSI)
+- Close with one-sentence outlook for next session
+Tone: Bloomberg/FT editorial. Under 280 words. No bullet points.`;
 
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 600,
-        messages: [{ role: 'user', content: prompt }]
-      })
+      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 700, messages: [{ role: 'user', content: prompt }] })
     });
     const data = await res.json();
     const text = data.content?.[0]?.text || 'Unable to generate briefing.';
-    out.innerHTML = text.split('\n').filter(l => l.trim()).map(p => `<p>${p}</p>`).join('');
-  } catch (err) {
-    out.innerHTML = `<p style="color:var(--negative);">Error generating briefing. Please try again.</p>`;
+    out.innerHTML = text.split('\n\n').filter(p => p.trim()).map(p => `<p>${p.trim()}</p>`).join('');
+  } catch {
+    out.innerHTML = `<p style="color:var(--negative);font-family:'IBM Plex Mono',monospace;font-size:.8rem;">Error — please try again.</p>`;
   }
+  btn.disabled = false; btn.textContent = '↻ Regenerate Briefing';
+});
 
-  btn.disabled = false;
-  btn.textContent = 'Regenerate Briefing';
-}
-
-// ── INIT ─────────────────────────────────────────────────────────────────
-renderDate();
-renderTicker();
-renderMarkets();
-renderCorp();
-renderMainStories();
-renderSidebar();
-renderMarketViews();
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+loadMarkets();
+loadGroup('all', 'feed-all', 'skel-all', 20).then(items => {
+  liveHL.US = items.filter(i => i.feed.tag === 'US').slice(0, 6).map(i => i.title);
+  liveHL.MY = items.filter(i => i.feed.tag.includes('MY')).slice(0, 3).map(i => i.title);
+});
+loadSidebar(FEED_CONFIG.yahoo, 'sb-yahoo', 7);
+loadSidebar(FEED_CONFIG.reuters, 'sb-reuters', 7);
 </script>
 </body>
 </html>
